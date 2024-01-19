@@ -112,8 +112,8 @@ public class Board extends JPanel {
 
     private void doDrawing(Graphics g) {
         String playerImg = "src/images/background.png";
-        var ii = new ImageIcon(playerImg);
 
+        var ii = new ImageIcon(playerImg);
         int newWidth = Commons.BOARD_WIDTH;
         int newHeight = Commons.BOARD_HEIGHT;
 
@@ -155,21 +155,29 @@ public class Board extends JPanel {
 
     private void gameOver(Graphics g) {
 
-        g.setColor(Color.black);
-        g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
+//        g.setColor(Color.black);
+//        g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
+//
+//        g.setColor(new Color(0, 32, 48));
+//        g.fillRect(50, Commons.BOARD_WIDTH / 2 - 30, Commons.BOARD_WIDTH - 100, 50);
+//        g.setColor(Color.white);
+//        g.drawRect(50, Commons.BOARD_WIDTH / 2 - 30, Commons.BOARD_WIDTH - 100, 50);
+//
+//        var small = new Font("Helvetica", Font.BOLD, 14);
+//        var fontMetrics = this.getFontMetrics(small);
+//
+//        g.setColor(Color.white);
+//        g.setFont(small);
+//        g.drawString(message, (Commons.BOARD_WIDTH - fontMetrics.stringWidth(message)) / 2,
+//        Commons.BOARD_WIDTH / 2);
 
-        g.setColor(new Color(0, 32, 48));
-        g.fillRect(50, Commons.BOARD_WIDTH / 2 - 30, Commons.BOARD_WIDTH - 100, 50);
-        g.setColor(Color.white);
-        g.drawRect(50, Commons.BOARD_WIDTH / 2 - 30, Commons.BOARD_WIDTH - 100, 50);
+        var ii = new ImageIcon("src/images/gameWin.png");
+        int newWidth = Commons.BOARD_WIDTH;
+        int newHeight = Commons.BOARD_HEIGHT;
 
-        var small = new Font("Helvetica", Font.BOLD, 14);
-        var fontMetrics = this.getFontMetrics(small);
+        ii = new ImageIcon(ii.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_DEFAULT));
 
-        g.setColor(Color.white);
-        g.setFont(small);
-        g.drawString(message, (Commons.BOARD_WIDTH - fontMetrics.stringWidth(message)) / 2,
-        Commons.BOARD_WIDTH / 2);
+        g.drawImage(ii.getImage(), 0, 0, null);
     }
 
     private void createRandomFruit() {
