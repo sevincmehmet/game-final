@@ -24,7 +24,7 @@ public class Player extends Sprite {
         int START_X = 400;
         setX(START_X);
 
-        int START_Y = 500;
+        int START_Y = 455;
         setY(START_Y);
     }
 
@@ -60,9 +60,9 @@ public class Player extends Sprite {
             x = 2;
         }
 
-        if (x >= Commons.BOARD_WIDTH - 90) {
+        if (x >= Commons.BOARD_WIDTH - 130) {
 
-            x = Commons.BOARD_WIDTH - 90;
+            x = Commons.BOARD_WIDTH - 130;
         }
     }
 

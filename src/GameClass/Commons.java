@@ -12,7 +12,7 @@ public interface Commons {
 
     int CHANCE = 5;
     int DELAY = 17;
-    int PLAYER_WIDTH = 70;
-    int PLAYER_HEIGHT = 70;
+    int PLAYER_WIDTH = 120;
+    int PLAYER_HEIGHT = 120;
 }
 

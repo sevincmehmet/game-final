@@ -1,6 +1,5 @@
 package GameClass;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -9,8 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -36,7 +33,9 @@ public class Board extends JPanel {
 
     private Timer timer;
 
-
+    private int[] operation = {4, 6, 8, 3};
+    private String[] operationString = {"2x2", "4+2", "10-2", "6/3"};
+    private int index = 0;
 
     public Board() {
 
@@ -119,6 +118,10 @@ public class Board extends JPanel {
 
         g.drawImage(ii.getImage(), 0, 0, null);
 
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.PLAIN, 35));
+        g.drawString(operationString[index], 20, 40);
+
         if (inGame) {
 
             g.drawLine(0, Commons.GROUND,
@@ -189,9 +192,24 @@ public class Board extends JPanel {
     private void sumFruitPoint(int point) {
         int sum = 0;
         fruitScore += point;
+        int result = operation[index];
+        System.out.println(fruitScore);
 
+        if (fruitScore == result) {
+
+            fruitScore = 0;
+
+            if (inGame && index == operation.length - 1) {
+                System.out.println("Kazandın!");
+                inGame = false;
+            }
+
+            index++;
+        }
         //burda istenen işlem sayısı fruitScoreye eşit olunca meyve skorunu sıfırla.
     }
+
+
 
     private void updateFruits() {
         for (Fruit fruit : fruits) {
