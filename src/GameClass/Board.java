@@ -162,12 +162,11 @@ public class Board extends JPanel {
         int fruit = random.nextInt(4);
         int x = random.nextInt(Commons.BOARD_WIDTH);
         int y = 15;
-        int speed = random.nextInt(9) + 1;
+        int speed = random.nextInt(5) + 1;
         int randomValue = random.nextInt(50);
 
         if (randomValue == Commons.CHANCE) {
 
-            System.out.println(speed);
             switch (fruit) {
                 case 0:
                     fruits.add(new Apple(x, y, 2, speed, false));
@@ -222,9 +221,8 @@ public class Board extends JPanel {
                         && fruitY >= (playerY)
                         && fruitY <= (playerY + Commons.PLAYER_HEIGHT)) {
 
-                    var ii = new ImageIcon(explImg);
-                    player.setImage(ii.getImage());
                     fruit.setDestroyed(true);
+                    fruit.die();
 
 
                     //toplama durumu
@@ -248,6 +246,8 @@ public class Board extends JPanel {
                 }
             }
         }
+
+        fruits.removeIf(fruit -> !fruit.isVisible() || fruit.getY() >= 550);
     }
 
     private void update() {
@@ -302,8 +302,6 @@ public class Board extends JPanel {
 
                 if (player.getSpeed() >= 4) return;
 
-                System.out.println("yukarı basıldı");
-                System.out.println(player.getSpeed());
                 player.setSpeed(player.getSpeed() + 1);
 
             }
@@ -312,10 +310,6 @@ public class Board extends JPanel {
                 if (player.getSpeed() <= -1) return;
 
                 player.setSpeed(player.getSpeed() - 1);
-                System.out.println(player.getSpeed());
-                System.out.println("aşağı basıldı");
-
-
             }
         }
     }

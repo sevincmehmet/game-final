@@ -7,11 +7,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player extends Sprite {
-    private static int count = 0;
 
     private int width;
     private int height;
     private int speed = 0;
+    private static int count = 0;
 
     public Player() {
 
@@ -60,14 +60,14 @@ public class Player extends Sprite {
             x = 2;
         }
 
-        if (x >= Commons.BOARD_WIDTH - 2 * width) {
+        if (x >= Commons.BOARD_WIDTH - 90) {
 
-            x = Commons.BOARD_WIDTH - 2 * width;
+            x = Commons.BOARD_WIDTH - 90;
         }
     }
 
     public void keyPressed(KeyEvent e) {
-        System.out.println(count);
+
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
@@ -78,10 +78,6 @@ public class Player extends Sprite {
             } else {
                 updateImg("src/images/sola_yatmış_125.png");
             }
-
-
-
-
 
             dx = -2;
         }
