@@ -1,17 +1,16 @@
 package GameClass;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,6 +23,8 @@ public class Board extends JPanel {
     private Dimension d;
     private Player player;
     private List<Fruit> fruits;
+
+    private SoundManager soundManager;
 
     private int direction = -1;
     private int deaths = 0;
@@ -44,6 +45,8 @@ public class Board extends JPanel {
 
     private void initBoard() {
 
+        this.soundManager = new SoundManager();
+
         addKeyListener(new TAdapter());
         setFocusable(true);
         d = new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
@@ -53,6 +56,7 @@ public class Board extends JPanel {
         timer.start();
 
         gameInit();
+        soundManager.playBackgroundMusic();
     }
 
 
@@ -104,10 +108,15 @@ public class Board extends JPanel {
     }
 
     private void doDrawing(Graphics g) {
+        String playerImg = "src/images/background.png";
+        var ii = new ImageIcon(playerImg);
 
-        g.setColor(Color.black);
-        g.fillRect(0, 0, d.width, d.height);
-        g.setColor(Color.green);
+        int newWidth = Commons.BOARD_WIDTH;
+        int newHeight = Commons.BOARD_HEIGHT;
+
+        ii = new ImageIcon(ii.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_DEFAULT));
+
+        g.drawImage(ii.getImage(), 0, 0, null);
 
         if (inGame) {
 
@@ -148,7 +157,7 @@ public class Board extends JPanel {
                 Commons.BOARD_WIDTH / 2);
     }
 
-    private void createRandomFruit(){
+    private void createRandomFruit() {
         Random random = new Random();
         int fruit = random.nextInt(4);
         int x = random.nextInt(Commons.BOARD_WIDTH);
@@ -156,35 +165,36 @@ public class Board extends JPanel {
         int speed = random.nextInt(9) + 1;
         int randomValue = random.nextInt(50);
 
-        if (randomValue == Commons.CHANCE){
+        if (randomValue == Commons.CHANCE) {
 
-            switch (fruit){
+            System.out.println(speed);
+            switch (fruit) {
                 case 0:
-                    fruits.add(new Apple(x,y,2,speed,false));
+                    fruits.add(new Apple(x, y, 2, speed, false));
                     break;
                 case 1:
-                    fruits.add(new Pear(x,y,1,speed,false));
+                    fruits.add(new Pear(x, y, 1, speed, false));
                     break;
                 case 2:
-                    fruits.add(new Banana(x,y,-1,speed,false));
+                    fruits.add(new Banana(x, y, -1, speed, false));
                     break;
                 case 3:
-                    fruits.add(new Strawberry(x,y,-2,speed,false));
+                    fruits.add(new Strawberry(x, y, -2, speed, false));
                     break;
             }
         }
     }
 
     //çarpısmada puanın eklenme durumu;
-    private void sumFruitPoint(int point){
-        int sum=0;
-        fruitScore+=point;
+    private void sumFruitPoint(int point) {
+        int sum = 0;
+        fruitScore += point;
 
         //burda istenen işlem sayısı fruitScoreye eşit olunca meyve skorunu sıfırla.
     }
 
-    private void updateFruits(){
-        for (Fruit fruit : fruits){
+    private void updateFruits() {
+        for (Fruit fruit : fruits) {
             var random = new Random();
 
 
@@ -217,13 +227,11 @@ public class Board extends JPanel {
                     fruit.setDestroyed(true);
 
 
-
                     //toplama durumu
                     sumFruitPoint(fruit.getPoint());
                     /*int sum=0;
                     int scoreValue=;
                     sum+=scoreValue;*/
-
 
 
                     //System.out.println("Oyuncuyla player çarpıştı");
@@ -232,9 +240,9 @@ public class Board extends JPanel {
 
             if (!fruit.isDestroyed()) {
 
-                fruit.setY(fruit.getY() + 1);
+                fruit.setY(fruit.getY() + fruit.getSpeed());
 
-                if (fruit.getY() >= Commons.GROUND ) {
+                if (fruit.getY() >= Commons.GROUND) {
 
                     fruit.setDestroyed(true);
                 }
@@ -290,11 +298,24 @@ public class Board extends JPanel {
             int key = e.getKeyCode();
 
             if (key == KeyEvent.VK_UP) {
+
+
+                if (player.getSpeed() >= 4) return;
+
                 System.out.println("yukarı basıldı");
+                System.out.println(player.getSpeed());
+                player.setSpeed(player.getSpeed() + 1);
+
             }
 
-            if(key == KeyEvent.VK_DOWN) {
+            if (key == KeyEvent.VK_DOWN) {
+                if (player.getSpeed() <= -1) return;
+
+                player.setSpeed(player.getSpeed() - 1);
+                System.out.println(player.getSpeed());
                 System.out.println("aşağı basıldı");
+
+
             }
         }
     }

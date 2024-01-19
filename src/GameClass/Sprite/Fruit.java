@@ -31,6 +31,10 @@ public class Fruit extends Sprite{
         this.x = x;
         this.y = y;
 
+        updateImg();
+    }
+
+    public void updateImg(){
         var fruitImg = "";
         var ii = new ImageIcon(fruitImg);
         setImage(ii.getImage());
@@ -49,5 +53,11 @@ public class Fruit extends Sprite{
     public int getPoint(){
         return point;
     }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+
 }
 
