@@ -126,7 +126,7 @@ public class GameFinal extends JFrame {
 
         add(startPanel, BorderLayout.CENTER);
 
-        setTitle("Space Invaders");
+        setTitle("Bambu'nun Meyve Hesapları");
         setSize(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -148,7 +148,7 @@ public class GameFinal extends JFrame {
 
         add(backgroundLabel, BorderLayout.CENTER);
 
-        setTitle("Space Invaders");
+        setTitle("Bambu' nun Meyve Hesapları");
         setSize(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);

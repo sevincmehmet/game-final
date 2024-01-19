@@ -11,12 +11,15 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Delayed;
 
 import GameClass.Sprite.*;
 
 
 public class Board extends JPanel {
 
+    private int timerCount = 0;
+    private int second = 0;
     private Dimension d;
     private Player player;
     private List<Fruit> fruits;
@@ -33,7 +36,7 @@ public class Board extends JPanel {
 
     private Timer timer;
 
-    private int[] operation = {4, 6, 8, 3};
+    private int[] operation = {4, 6, 8, 2};
     private String[] operationString = {"2x2", "4+2", "10-2", "6/3"};
     private int index = 0;
 
@@ -122,8 +125,13 @@ public class Board extends JPanel {
         g.setFont(new Font("Arial", Font.PLAIN, 35));
         g.drawString(operationString[index], 20, 40);
 
+        g.setColor(Color.BLUE);
         String score = String.valueOf(fruitScore);
         g.drawString(score,750,40);
+
+        g.setColor(Color.BLUE);
+        String time = String.valueOf(second);
+        g.drawString(time,750,550);
 
         if (inGame) {
 
@@ -278,6 +286,13 @@ public class Board extends JPanel {
     }
 
     private void update() {
+
+        timerCount++;
+
+        if(timerCount % (1000/ Commons.DELAY) == 0 ){
+            System.out.println(second);
+            second++;
+        }
 
         // player
         player.act();
