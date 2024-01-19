@@ -16,7 +16,7 @@ public class Player extends Sprite {
 
     private void initPlayer() {
 
-        var playerImg = "src/images/player.png";
+        var playerImg = "";
         var ii = new ImageIcon(playerImg);
 
         width = ii.getImage().getWidth(null);

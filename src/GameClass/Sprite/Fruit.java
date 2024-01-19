@@ -31,7 +31,7 @@ public class Fruit extends Sprite{
         this.x = x;
         this.y = y;
 
-        var fruitImg = "src/images/alien.png";
+        var fruitImg = "";
         var ii = new ImageIcon(fruitImg);
         setImage(ii.getImage());
     }

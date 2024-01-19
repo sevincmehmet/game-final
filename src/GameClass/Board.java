@@ -30,7 +30,7 @@ public class Board extends JPanel {
     private int fruitScore = 0;//burası meyve carpısma durumunda score toplamı;
 
     private boolean inGame = true;
-    private String explImg = "src/images/explosion.png";
+    private String explImg = "";
     private String message = "Game Over";
 
     private Timer timer;
