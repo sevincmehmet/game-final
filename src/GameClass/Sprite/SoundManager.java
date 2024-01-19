@@ -26,7 +26,7 @@ public class SoundManager {
 
     private void loadSounds() {
         try {
-            File winFile = new File("C:\\Users\\Owsito\\IdeaProjects\\game-final\\src\\GameClass\\Sound\\başarı (online-audio-converter.com) (1).wav");
+            File winFile = new File("src/sound/Basari.wav");
             AudioInputStream winStream = AudioSystem.getAudioInputStream(winFile);
             winSound = AudioSystem.getClip();
             winSound.open(winStream);
@@ -49,7 +49,7 @@ public class SoundManager {
 
     public void playBackgroundMusic() {
         try {
-            File soundFile = new File("C:\\Users\\Owsito\\IdeaProjects\\game-final\\src\\GameClass\\Sound\\Background.wav");
+            File soundFile = new File("src/sound/Background.wav");
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);

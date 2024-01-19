@@ -37,6 +37,7 @@ public class Board extends JPanel {
     private Timer timer;
 
 
+
     public Board() {
 
         initBoard();
