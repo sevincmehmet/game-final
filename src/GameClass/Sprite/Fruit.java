@@ -45,5 +45,9 @@ public class Fruit extends Sprite{
 
         return destroyed;
     }
+
+    public int getPoint(){
+        return point;
+    }
 }
 

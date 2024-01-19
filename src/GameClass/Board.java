@@ -27,6 +27,7 @@ public class Board extends JPanel {
 
     private int direction = -1;
     private int deaths = 0;
+    private int fruitScore = 0;//burası meyve carpısma durumunda score toplamı;
 
     private boolean inGame = true;
     private String explImg = "src/images/explosion.png";
@@ -174,6 +175,14 @@ public class Board extends JPanel {
         }
     }
 
+    //çarpısmada puanın eklenme durumu;
+    private void sumFruitPoint(int point){
+        int sum=0;
+        fruitScore+=point;
+
+        //burda istenen işlem sayısı fruitScoreye eşit olunca meyve skorunu sıfırla.
+    }
+
     private void updateFruits(){
         for (Fruit fruit : fruits){
             var random = new Random();
@@ -207,7 +216,17 @@ public class Board extends JPanel {
                     player.setImage(ii.getImage());
                     fruit.setDestroyed(true);
 
-                    System.out.println("Oyuncuyla player çarpıştı");
+
+
+                    //toplama durumu
+                    sumFruitPoint(fruit.getPoint());
+                    /*int sum=0;
+                    int scoreValue=;
+                    sum+=scoreValue;*/
+
+
+
+                    //System.out.println("Oyuncuyla player çarpıştı");
                 }
             }
 
