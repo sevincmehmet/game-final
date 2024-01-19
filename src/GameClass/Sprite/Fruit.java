@@ -8,24 +8,31 @@ import java.util.Random;
 
 public class Fruit extends Sprite{
 
-    public Fruit() {
-        Random random = new Random();
-        int randomFruitX = random.nextInt(Commons.BOARD_HEIGHT);
-        initFruit(randomFruitX, y);
-    }
-
+    private int point;
+    private int speed;
     private boolean destroyed;
+
+    public Fruit(int x, int y,int point, int speed, boolean destroyed) {
+
+        this.point = point;
+        this.speed = speed;
+        this.destroyed = destroyed;
+        initFruit(x,y);
+    }
 
 
     private void initFruit(int x, int y) {
+
+        Random random = new Random();
+        int randomFruitX = random.nextInt(Commons.BOARD_HEIGHT);
 
         setDestroyed(true);
 
         this.x = x;
         this.y = y;
 
-        var bombImg = "src/images/bomb.png";
-        var ii = new ImageIcon(bombImg);
+        var fruitImg = "src/images/alien.png";
+        var ii = new ImageIcon(fruitImg);
         setImage(ii.getImage());
     }
 

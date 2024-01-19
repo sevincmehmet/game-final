@@ -5,7 +5,7 @@ public interface Commons {
     int BOARD_WIDTH = 800;
     int BOARD_HEIGHT = 650;
 
-    int GROUND = 290;
+    int GROUND = 570; // yeşil çizgi hizası
 
 
     int GO_DOWN = 15;
