@@ -122,6 +122,9 @@ public class Board extends JPanel {
         g.setFont(new Font("Arial", Font.PLAIN, 35));
         g.drawString(operationString[index], 20, 40);
 
+        String score = String.valueOf(fruitScore);
+        g.drawString(score,750,40);
+
         if (inGame) {
 
             g.drawLine(0, Commons.GROUND,
@@ -158,7 +161,7 @@ public class Board extends JPanel {
         g.setColor(Color.white);
         g.setFont(small);
         g.drawString(message, (Commons.BOARD_WIDTH - fontMetrics.stringWidth(message)) / 2,
-                Commons.BOARD_WIDTH / 2);
+        Commons.BOARD_WIDTH / 2);
     }
 
     private void createRandomFruit() {
@@ -204,7 +207,12 @@ public class Board extends JPanel {
                 inGame = false;
             }
 
-            index++;
+            if (index == operation.length-1){
+                index = operation.length-1;
+            }
+            else {
+                index++;
+            }
         }
         //burda istenen işlem sayısı fruitScoreye eşit olunca meyve skorunu sıfırla.
     }
